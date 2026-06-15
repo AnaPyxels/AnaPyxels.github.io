@@ -44,7 +44,7 @@ body{
     border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
-/* LOGO COM AVATAR */
+/* LOGO */
 .logo-area{
     display:flex;
     align-items:center;
@@ -57,21 +57,12 @@ body{
     border-radius:50%;
     object-fit:cover;
     border:2px solid rgba(255,255,255,0.2);
-    box-shadow:0 5px 15px rgba(0,0,0,0.2);
 }
 
 .logo-text{
     font-size:1rem;
     font-weight:700;
     color:white;
-    letter-spacing:0.3px;
-}
-
-.logo{
-    font-size:1rem;
-    font-weight:700;
-    color:white;
-    letter-spacing:0.5px;
 }
 
 .nav{
@@ -85,31 +76,14 @@ body{
     text-decoration:none;
     font-size:0.85rem;
     font-weight:500;
-    position:relative;
     transition:.25s;
-    padding:6px 0;
-}
-
-.nav a::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-4px;
-    width:0%;
-    height:2px;
-    background:#6366F1;
-    transition:.3s;
-    border-radius:10px;
 }
 
 .nav a:hover{
     color:white;
 }
 
-.nav a:hover::after{
-    width:100%;
-}
-
+/* CTA MENU */
 .nav .cta{
     padding:8px 14px;
     border-radius:10px;
@@ -118,75 +92,245 @@ body{
     color:#C7D2FE;
 }
 
-.nav .cta:hover{
-    background:#6366F1;
-    color:white;
-    transform:translateY(-1px);
-}
-
 /* =========================
-   HERO
+   HERO SPLIT
 ========================= */
 .hero{
     min-height:100vh;
     display:flex;
     align-items:center;
+    justify-content:space-between;
+    padding:120px 8%;
+    gap:60px;
+}
+
+/* FOTO ESQUERDA */
+.hero-left{
+    flex:1;
+    display:flex;
     justify-content:center;
-    text-align:center;
-    padding:120px 20px 80px;
-    position:relative;
-    overflow:hidden;
+    align-items:center;
 }
 
-.hero::before{
-    content:"";
-    position:absolute;
-    width:500px;
-    height:500px;
-    background:#6366F1;
-    filter:blur(160px);
-    opacity:0.25;
-    top:-100px;
-    left:-100px;
-}
-
-.hero::after{
-    content:"";
-    position:absolute;
-    width:500px;
-    height:500px;
-    background:#06B6D4;
-    filter:blur(180px);
-    opacity:0.15;
-    bottom:-150px;
-    right:-150px;
-}
-
-.hero-content{
-    position:relative;
-    z-index:2;
-    max-width:700px;
-}
-
-.hero img{
-    width:150px;
-    height:150px;
+.hero-left img{
+    width:340px;
+    height:340px;
     border-radius:50%;
     object-fit:cover;
     border:3px solid rgba(255,255,255,0.1);
+    box-shadow:0 25px 70px rgba(99,102,241,0.25);
+}
+
+/* TEXTO DIREITA */
+.hero-right{
+    flex:1;
+    max-width:600px;
+}
+
+.hero-right h1{
+    font-size:3rem;
+    color:white;
+    margin-bottom:10px;
+}
+
+.hero-right h2{
+    color:#6366F1;
+    font-size:1.3rem;
     margin-bottom:20px;
 }
 
-.hero h1{
-    font-size:3rem;
-    font-weight:800;
-    color:white;
+.hero-desc{
+    color:#c7cbd6;
+    line-height:1.6;
+    margin-bottom:20px;
 }
 
-.hero h2{
-    font-size:1.2rem;
-    color:#6366F1;
-    margin-top:10px;
+/* BADGES */
+.badges{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:25px;
+}
+
+.badges span{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:0.8rem;
+}
+
+/* =========================
+   BOTÕES (CORRIGIDO)
+========================= */
+.hero-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:25px;
+    justify-content:flex-start;
+}
+
+/* BOTÃO PRINCIPAL */
+.btn-primary{
+    background:linear-gradient(135deg,#6366F1,#4F46E5);
+    color:white;
+    padding:12px 18px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(99,102,241,0.3);
+}
+
+/* BOTÃO SECUNDÁRIO */
+.btn-secondary{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.12);
+    color:white;
+    padding:12px 18px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-secondary:hover{
+    background:rgba(255,255,255,0.1);
+    transform:translateY(-2px);
+}
+
+/* OUTLINE */
+.btn-outline{
+    background:transparent;
+    border:1px solid rgba(99,102,241,0.5);
+    color:#C7D2FE;
+    padding:12px 18px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-outline:hover{
+    background:rgba(99,102,241,0.15);
+    color:white;
+    transform:translateY(-2px);
+}
+
+
+/* =========================
+   GRID 3 COLUNAS (DESKTOP)
+========================= */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:20px;
+    max-width:1100px;
+    margin:auto;
+}
+
+/* RESPONSIVO */
+@media(max-width:1000px){
+    .grid{
+        grid-template-columns:repeat(2, 1fr);
+    }
+}
+
+@media(max-width:650px){
+    .grid{
+        grid-template-columns:1fr;
+    }
+}
+
+/* =========================
+   CARD MENOR E MODERNO
+========================= */
+
+.project{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+
+    border-radius:16px;
+    overflow:hidden;
+    text-decoration:none;
+
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.06);
+
+    transition:.3s ease;
+}
+
+/* hover */
+.project:hover{
+    transform:translateY(-6px);
+    border-color:#6366F1;
+    box-shadow:0 18px 40px rgba(99,102,241,0.18);
+}
+
+/* imagem MENOR (não gigante mais) */
+.project img{
+    width:100%;
+    height:160px;   /* 🔥 menor que antes */
+    object-fit:cover;
+    transition:.4s ease;
+}
+
+/* zoom leve */
+.project:hover img{
+    transform:scale(1.06);
+}
+
+/* área de texto */
+.project-info{
+    padding:14px 14px;
+    font-weight:600;
+    font-size:0.95rem;
+    color:white;
+
+    background:linear-gradient(to top, rgba(0,0,0,0.55), transparent);
+}
+
+/* botão overlay */
+.project::after{
+    content:"Ver projeto →";
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+
+    background:rgba(99,102,241,0.92);
+    color:white;
+    padding:8px 14px;
+    border-radius:10px;
+    font-size:0.8rem;
+    font-weight:600;
+
+    opacity:0;
+    transition:.25s;
+}
+
+.project:hover::after{
+    opacity:1;
+}
+
+/* escurece no hover */
+.project::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0);
+    transition:.25s;
+}
+
+.project:hover::before{
+    background:rgba(0,0,0,0.35);
 }
 
 /* =========================
@@ -200,12 +344,211 @@ section{
     text-align:center;
     font-size:2rem;
     margin-bottom:40px;
+}
+
+
+/* =========================
+   SOBRE - NOVO LAYOUT
+========================= */
+
+.about-container{
+    max-width:1100px;
+    margin:auto;
+    display:flex;
+    gap:40px;
+    align-items:flex-start;
+    flex-wrap:wrap;
+}
+
+/* TEXTO */
+.about-text{
+    flex:1;
+    min-width:300px;
+}
+
+.about-text p{
+    font-size:1.05rem;
+    line-height:1.8;
+    color:#c7cbd6;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.06);
+    padding:25px;
+    border-radius:16px;
+}
+
+/* CARDS */
+.about-cards{
+    flex:1;
+    min-width:300px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.about-card{
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.06);
+    padding:20px;
+    border-radius:14px;
+    transition:.3s;
+}
+
+.about-card:hover{
+    transform:translateY(-3px);
+    border-color:#6366F1;
+}
+
+.about-card h3{
+    margin-bottom:8px;
     color:white;
+    font-size:1rem;
+}
+
+.about-card p{
+    color:#A1A1AA;
+    font-size:0.9rem;
+    line-height:1.6;
+}
+
+.about-container{
+    max-width:1100px;
+    margin:auto;
+    display:flex;
+    gap:40px;
+    align-items:stretch; /* 👈 ESSENCIAL */
+}
+
+/* LADO ESQUERDO */
+.about-text{
+    flex:1;
+    min-width:300px;
+    display:flex;          /* 👈 faz o card crescer */
+}
+
+.about-text p{
+    flex:1;                /* 👈 ocupa altura toda */
+    display:flex;
+    align-items:center;    /* centraliza verticalmente (opcional) */
+
+    font-size:1.05rem;
+    line-height:1.8;
+    color:#c7cbd6;
+
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.06);
+    padding:25px;
+    border-radius:16px;
+}
+
+/* LADO DIREITO */
+.about-cards{
+    flex:1;
+    min-width:300px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+/* RESPONSIVO */
+@media(max-width:900px){
+    .about-container{
+        flex-direction:column;
+    }
 }
 
 /* =========================
-   CARD
+   EXPERIÊNCIA (TIMELINE)
 ========================= */
+
+.timeline{
+    max-width:900px;
+    margin:auto;
+    position:relative;
+    padding-left:20px;
+}
+
+/* linha vertical */
+.timeline::before{
+    content:"";
+    position:absolute;
+    left:8px;
+    top:0;
+    bottom:0;
+    width:2px;
+    background:rgba(99,102,241,0.3);
+}
+
+.timeline-item{
+    position:relative;
+    margin-bottom:30px;
+}
+
+.timeline-dot{
+    width:12px;
+    height:12px;
+    background:#6366F1;
+    border-radius:50%;
+    position:absolute;
+    left:3px;
+    top:6px;
+    box-shadow:0 0 10px rgba(99,102,241,0.5);
+}
+
+.timeline-content{
+    margin-left:30px;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.06);
+    padding:20px;
+    border-radius:14px;
+    transition:.3s;
+}
+
+.timeline-content:hover{
+    transform:translateY(-3px);
+    border-color:#6366F1;
+}
+
+.timeline-content h3{
+    color:white;
+    margin-bottom:5px;
+}
+
+.company{
+    display:block;
+    color:#A1A1AA;
+    font-size:0.85rem;
+    margin-bottom:4px;
+}
+
+.date{
+    display:block;
+    color:#6366F1;
+    font-size:0.8rem;
+    margin-bottom:10px;
+}
+
+.timeline-content p{
+    color:#C7CBD6;
+    margin-bottom:10px;
+    line-height:1.6;
+}
+
+.tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.tags span{
+    font-size:0.75rem;
+    padding:5px 10px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    color:#d1d5db;
+}
+
+/* CARD */
 .card{
     background:rgba(255,255,255,0.03);
     border:1px solid rgba(255,255,255,0.06);
@@ -214,12 +557,9 @@ section{
     max-width:900px;
     margin:auto;
     color:#C7CBD6;
-    line-height:1.8;
 }
 
-/* =========================
-   PORTFÓLIO
-========================= */
+/* PORTFÓLIO */
 .grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -252,9 +592,7 @@ section{
     font-weight:600;
 }
 
-/* =========================
-   CONTATO
-========================= */
+/* CONTATO */
 .social{
     display:flex;
     justify-content:center;
@@ -268,125 +606,631 @@ section{
     text-decoration:none;
     color:white;
     background:rgba(255,255,255,0.05);
-    border:1px solid rgba(255,255,255,0.08);
+}
+
+
+/* SUBTÍTULO */
+.cert-subtitle{
+    text-align:center;
+    color:#A1A1AA;
+    margin-top:-20px;
+    margin-bottom:40px;
+    font-size:1rem;
+}
+
+/* GRID */
+.cert-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:20px;
+    max-width:1000px;
+    margin:auto;
+}
+
+/* RESPONSIVO */
+@media(max-width:800px){
+    .cert-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+/* CARD */
+.cert-card{
+    display:flex;
+    gap:16px;
+    padding:18px;
+
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.06);
+    border-radius:16px;
+
     transition:.3s;
 }
 
-.social a:hover{
-    background:#6366F1;
+.cert-card:hover{
+    transform:translateY(-5px);
+    border-color:#6366F1;
+    box-shadow:0 15px 35px rgba(99,102,241,0.15);
 }
+
+/* LOGO */
+.cert-logo img{
+    width:50px;
+    height:50px;
+    object-fit:contain;
+    border-radius:10px;
+    background:rgba(255,255,255,0.05);
+    padding:6px;
+}
+
+/* TEXTO */
+.cert-info h3{
+    font-size:1rem;
+    color:white;
+    margin-bottom:4px;
+}
+
+.cert-info span{
+    font-size:0.85rem;
+    color:#A1A1AA;
+    display:block;
+    margin-bottom:6px;
+}
+
+.cert-info p{
+    font-size:0.8rem;
+    color:#6b7280;
+    margin-bottom:10px;
+}
+
+/* TAGS */
+.cert-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+}
+
+.cert-tags span{
+    font-size:0.75rem;
+    padding:4px 8px;
+    border-radius:20px;
+
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    color:#d1d5db;
+}
+
+/* =========================
+   CONTATO PREMIUM
+========================= */
+
+.contact-subtitle{
+    text-align:center;
+    color:#A1A1AA;
+    max-width:600px;
+    margin:0 auto 40px auto;
+    line-height:1.6;
+    font-size:1rem;
+}
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:18px;
+    max-width:900px;
+    margin:auto;
+}
+
+/* CARD BASE */
+.contact-card{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:18px;
+    border-radius:16px;
+    text-decoration:none;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.06);
+    transition:.3s;
+}
+
+.contact-card:hover{
+    transform:translateY(-4px);
+    border-color:#6366F1;
+    background:rgba(99,102,241,0.08);
+}
+
+.contact-card h3{
+    color:white;
+    font-size:1rem;
+    margin-bottom:2px;
+}
+
+.contact-card span{
+    font-size:0.85rem;
+    color:#A1A1AA;
+}
+
+/* ÍCONE */
+.icon{
+    font-size:1.6rem;
+    width:40px;
+    height:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:12px;
+    background:rgba(255,255,255,0.05);
+}
+
+.contact-subtitle{
+    text-align:center;
+    color:#A1A1AA;
+    max-width:600px;
+    margin:0 auto 40px auto;
+    line-height:1.6;
+    font-size:1rem;
+}
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:18px;
+    max-width:900px;
+    margin:auto;
+}
+
+/* CARD */
+.contact-card{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:18px;
+    border-radius:16px;
+    text-decoration:none;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.06);
+    transition:.3s;
+    position:relative;
+    overflow:hidden;
+}
+
+.contact-card:hover{
+    transform:translateY(-5px);
+    border-color:#6366F1;
+    background:rgba(99,102,241,0.08);
+}
+
+/* efeito brilho */
+.contact-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    transition:0.5s;
+}
+
+.contact-card:hover::before{
+    left:100%;
+}
+
+/* ÍCONE */
+.icon{
+    font-size:1.6rem;
+    width:40px;
+    height:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:12px;
+    background:rgba(255,255,255,0.05);
+}
+
+/* TEXTO */
+.contact-info{
+    display:flex;
+    flex-direction:column;
+}
+
+.contact-card h3{
+    color:white;
+    font-size:1rem;
+    margin-bottom:2px;
+}
+
+.contact-card span{
+    font-size:0.85rem;
+    color:#A1A1AA;
+}
+
+/* CORES ESPECÍFICAS */
+.instagram:hover .icon{ background:#E1306C22; }
+.linkedin:hover .icon{ background:#0A66C222; }
+.whatsapp:hover .icon{ background:#25D36622; }
+.email:hover .icon{ background:#6366F122; }
 
 /* =========================
    RESPONSIVO
 ========================= */
-@media(max-width:768px){
-    .hero h1{font-size:2.2rem;}
-    .nav{display:none;}
+@media(max-width:900px){
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .hero-left img{
+        width:220px;
+        height:220px;
+    }
+
+    .hero-right h1{
+        font-size:2.2rem;
+    }
+
+    .hero-actions{
+        justify-content:center;
+    }
+
+    .nav{
+        display:none;
+    }
 }
 
 </style>
-
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header class="header">
 
     <div class="logo-area">
-
         {% if dados.foto %}
         <img class="mini-avatar" src="{{ url_for('static', filename=dados.foto) }}">
         {% endif %}
-
         <span class="logo-text">{{ dados.nome }}</span>
-
     </div>
 
     <nav class="nav">
         <a href="#home">Home</a>
         <a href="#sobre">Sobre</a>
+        <a href="#trabalhos">Trabalhos</a>
         <a href="#formacao">Formação</a>
-        <a href="#certificacoes">Certificações</a>
         <a href="#portfolio">Portfólio</a>
+        <a href="#certificacoes">Certificações</a>
         <a href="#contato" class="cta">Contato</a>
     </nav>
 
 </header>
 
-<!-- HERO -->
 <section id="home" class="hero">
 
-    <div class="hero-content">
-
+    <div class="hero-left">
         {% if dados.foto %}
         <img src="{{ url_for('static', filename=dados.foto) }}">
         {% endif %}
+    </div>
+
+    <div class="hero-right">
 
         <h1>{{ dados.nome }}</h1>
         <h2>{{ dados.cargo }}</h2>
+
+        <p class="hero-desc">
+            Estudante de Marketing com foco em redes sociais, branding e conteúdo digital.
+        </p>
+
+        <div class="badges">
+            <span>📍 São Paulo</span>
+            <span>📊 Marketing Digital</span>
+            <span>📱 Social Media</span>
+            <span>🎯 Branding</span>
+        </div>
+
+        <div class="hero-actions">
+            <a href="#portfolio" class="btn-primary">Meu Portfólio</a>
+            <a href="#contato" class="btn-secondary">Fale comigo</a>
+            <a href="#" class="btn-outline">Baixar Currículo</a>
+        </div>
 
     </div>
 
 </section>
 
-<!-- SOBRE -->
 <section id="sobre">
-    <h2 class="title">Sobre</h2>
-    <div class="card">{{ dados.sobre }}</div>
+
+    <h2 class="title">Sobre mim</h2>
+
+    <div class="about-container">
+
+        <!-- TEXTO PRINCIPAL -->
+        <div class="about-text">
+
+            <p>
+                {{ dados.sobre }}
+            </p>
+
+        </div>
+
+        <!-- DESTAQUES -->
+        <div class="about-cards">
+
+            <div class="about-card">
+                <h3>🎯 Objetivo</h3>
+                <p>Atuar como estagiária em marketing digital, focada em conteúdo e redes sociais.</p>
+            </div>
+
+            <div class="about-card">
+                <h3>📊 Foco</h3>
+                <p>Criação de conteúdo, branding e estratégias para redes sociais.</p>
+            </div>
+
+            <div class="about-card">
+                <h3>🚀 Diferencial</h3>
+                <p>Aprendizado rápido, criatividade e interesse em growth marketing.</p>
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
 
-<!-- FORMAÇÃO -->
-<section id="formacao">
-    <h2 class="title">Formação</h2>
-    <div class="card">Em breve...</div>
+<section id="experiencia">
+
+    <h2 class="title">Experiência Profissional</h2>
+
+    <div class="timeline">
+
+        <!-- 1 -->
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+
+                <h3>Auxiliar de Caixa</h3>
+                <span class="company">Hagams Drogaria LTDA · Tempo integral</span>
+                <span class="date">Mai 2024 - Atualmente · 2 anos e 2 meses</span>
+
+                <p>
+                    Atendimento ao cliente, operações de caixa e suporte administrativo.
+                </p>
+
+                <div class="tags">
+                    <span>Microsoft Office</span>
+                    <span>Atendimento ao cliente</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+
+                <h3>Atendimento ao Cliente</h3>
+                <span class="company">M.M Story · Tempo integral</span>
+                <span class="date">Abr 2023 - Jan 2024 · 10 meses · Diadema - SP</span>
+
+                <p>
+                    Atendimento ao cliente, organização de processos e suporte operacional.
+                </p>
+
+                <div class="tags">
+                    <span>Comunicação</span>
+                    <span>Organização</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+
+                <h3>Auxiliar de Logística</h3>
+                <span class="company">CEVA Logistics · Tempo integral</span>
+                <span class="date">Mar 2022 - Jan 2023 · 11 meses · Diadema - SP</span>
+
+                <p>
+                    Controle de estoque, separação de mercadorias e suporte logístico.
+                </p>
+
+                <div class="tags">
+                    <span>Logística</span>
+                    <span>Organização</span>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
 </section>
 
-<!-- CERTIFICAÇÕES -->
-<section id="certificacoes">
-    <h2 class="title">Certificações</h2>
-    <div class="card">Em breve...</div>
-</section>
-
-<!-- PORTFÓLIO -->
 <section id="portfolio">
+
     <h2 class="title">Portfólio</h2>
 
     <div class="grid">
 
         {% for p in dados.projetos %}
-
         <a href="/projeto/{{ p.id }}" class="project">
-            <img src="{{ url_for('static', filename=p.imagens[0]) }}">
-            <div>{{ p.titulo }}</div>
-        </a>
 
+            <img src="{{ url_for('static', filename=p.imagens[0]) }}">
+
+            <div class="project-info">
+                {{ p.titulo }}
+            </div>
+
+        </a>
         {% endfor %}
 
     </div>
 
 </section>
 
-<!-- CONTATO -->
+<section id="certificacoes">
+
+    <h2 class="title">Certificações</h2>
+    <p class="cert-subtitle">Licenças e certificados concluídos</p>
+
+    <div class="cert-grid">
+
+        <!-- 1 -->
+        <div class="cert-card">
+            <div class="cert-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Fundacao_Bradesco_logo.png" alt="">
+            </div>
+
+            <div class="cert-info">
+                <h3>Excel na Prática</h3>
+                <span>Fundação Bradesco</span>
+
+                <p>Emitido em ago de 2025 · Expira em set de 2025</p>
+
+                <div class="cert-tags">
+                    <span>Excel</span>
+                    <span>Organização</span>
+                    <span>Cálculo</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="cert-card">
+            <div class="cert-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Sodiprom_logo.png" alt="">
+            </div>
+
+            <div class="cert-info">
+                <h3>Formação Básica para o Mundo do Trabalho</h3>
+                <span>Sodiprom</span>
+
+                <p>Verificação emitida em jul de 2019</p>
+
+                <div class="cert-tags">
+                    <span>Comunicação</span>
+                    <span>Excel</span>
+                    <span>Word</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="cert-card">
+            <div class="cert-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Logo_Fundacao_Florestan_Fernandes.png" alt="">
+            </div>
+
+            <div class="cert-info">
+                <h3>Rotinas Administrativas</h3>
+                <span>Fundação Florestan Fernandes</span>
+
+                <p>Verificação emitida em dez de 2023</p>
+
+                <div class="cert-tags">
+                    <span>Organização</span>
+                    <span>Comunicação</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="cert-card">
+            <div class="cert-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Conquer_logo.png" alt="">
+            </div>
+
+            <div class="cert-info">
+                <h3>Produtividade Inteligente</h3>
+                <span>Escola Conquer</span>
+
+                <p>Verificação emitida em fev de 2023</p>
+
+                <div class="cert-tags">
+                    <span>Produtividade</span>
+                    <span>Gestão</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="cert-card">
+            <div class="cert-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Excel_logo.png" alt="">
+            </div>
+
+            <div class="cert-info">
+                <h3>Planilhas Profissionais no Excel 2016</h3>
+                <span>Aulaead</span>
+
+                <p>Verificação emitida em jun de 2019</p>
+
+                <div class="cert-tags">
+                    <span>Excel</span>
+                    <span>Organização</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
 <section id="contato">
+
     <h2 class="title">Contato</h2>
 
-    <div class="social">
+    <p class="contact-subtitle">
+        Estou disponível para oportunidades de estágio em marketing digital.
+        Entre em contato comigo através dos canais abaixo.
+    </p>
+
+    <div class="contact-grid">
 
         {% if dados.instagram %}
-        <a href="{{ dados.instagram }}">Instagram</a>
+        <a class="contact-card instagram" href="{{ dados.instagram }}" target="_blank">
+            <div class="icon">📸</div>
+            <div class="contact-info">
+                <h3>Instagram</h3>
+                <span>Veja meu conteúdo</span>
+            </div>
+        </a>
         {% endif %}
 
         {% if dados.linkedin %}
-        <a href="{{ dados.linkedin }}">LinkedIn</a>
+        <a class="contact-card linkedin" href="{{ dados.linkedin }}" target="_blank">
+            <div class="icon">💼</div>
+            <div class="contact-info">
+                <h3>LinkedIn</h3>
+                <span>Conexão profissional</span>
+            </div>
+        </a>
         {% endif %}
 
         {% if dados.whatsapp %}
-        <a href="{{ dados.whatsapp }}">WhatsApp</a>
+        <a class="contact-card whatsapp" href="{{ dados.whatsapp }}" target="_blank">
+            <div class="icon">💬</div>
+            <div class="contact-info">
+                <h3>WhatsApp</h3>
+                <span>Resposta rápida</span>
+            </div>
+        </a>
         {% endif %}
 
         {% if dados.email %}
-        <a href="mailto:{{ dados.email }}">Email</a>
+        <a class="contact-card email" href="mailto:{{ dados.email }}">
+            <div class="icon">✉️</div>
+            <div class="contact-info">
+                <h3>Email</h3>
+                <span>Contato formal</span>
+            </div>
+        </a>
         {% endif %}
 
     </div>
