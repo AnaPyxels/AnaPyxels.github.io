@@ -656,12 +656,12 @@ section{
 
 /* LOGO */
 .cert-logo img{
-    width:50px;
-    height:50px;
+    width:60px;
+    height:60px;
     object-fit:contain;
-    border-radius:10px;
+    border-radius:14px;
     background:rgba(255,255,255,0.05);
-    padding:6px;
+    padding:8px;
 }
 
 /* TEXTO */
@@ -1283,12 +1283,19 @@ section{
         {% endif %}
 
         {% if dados.whatsapp %}
-        <a class="contact-card whatsapp" href="{{ dados.whatsapp }}" target="_blank">
-            <div class="icon"><i class="fa-brands fa-whatsapp"></i></div>
+        <a class="contact-card whatsapp"
+        href="https://wa.me/55{{ dados.whatsapp }}"
+        target="_blank">
+
+            <div class="icon">
+                <i class="fa-brands fa-whatsapp"></i>
+            </div>
+
             <div class="contact-info">
                 <h3>WhatsApp</h3>
                 <span>Resposta rápida</span>
             </div>
+
         </a>
         {% endif %}
 

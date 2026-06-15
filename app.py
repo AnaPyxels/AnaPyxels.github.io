@@ -18,6 +18,9 @@ ADMIN_EMAIL = "admin@portfolioana.com"
 ADMIN_PASSWORD = "Ana@2026Portfolio"
 
 
+# =========================================================
+# DADOS
+# =========================================================
 def carregar_dados():
     try:
         with open(JSON_FILE, "r", encoding="utf-8") as f:
@@ -27,10 +30,12 @@ def carregar_dados():
             "nome": "Ana Carolina Gonçalves Lopes",
             "cargo": "Estagiária de Marketing",
             "sobre": "",
-            "instagram": "",
+            "email": "",
             "linkedin": "",
             "whatsapp": "",
             "foto": "",
+            "formacao": [],
+            "experiencias": [],
             "projetos": []
         }
 
@@ -40,16 +45,12 @@ def salvar_dados(dados):
         json.dump(dados, f, indent=4, ensure_ascii=False)
 
 
-@app.route("/")
-def index():
-    return render_template("index.html", dados=carregar_dados())
-
-
+# =========================================================
+# LOGIN / LOGOUT
+# =========================================================
 @app.route("/login", methods=["GET", "POST"])
 def login():
-
     if request.method == "POST":
-
         email = request.form["email"]
         senha = request.form["senha"]
 
@@ -65,21 +66,33 @@ def login():
 @app.route("/logout")
 def logout():
     session.clear()
-    return redirect(url_for("index"))
+    return redirect(url_for("login"))
 
 
+# =========================================================
+# DASHBOARD
+# =========================================================
 @app.route("/admin")
 def admin():
-
     if not session.get("logado"):
         return redirect(url_for("login"))
 
     return render_template("admin.html", dados=carregar_dados())
 
 
-@app.route("/salvar", methods=["POST"])
-def salvar():
+# =========================================================
+# PERFIL
+# =========================================================
+@app.route("/admin/perfil")
+def admin_perfil():
+    if not session.get("logado"):
+        return redirect(url_for("login"))
 
+    return render_template("admin/perfil.html", dados=carregar_dados())
+
+
+@app.route("/salvar_perfil", methods=["POST"])
+def salvar_perfil():
     if not session.get("logado"):
         return redirect(url_for("login"))
 
@@ -88,84 +101,201 @@ def salvar():
     dados["nome"] = request.form["nome"]
     dados["cargo"] = request.form["cargo"]
     dados["sobre"] = request.form["sobre"]
-    dados["instagram"] = request.form["instagram"]
-    dados["linkedin"] = request.form["linkedin"]
-    dados["whatsapp"] = request.form["whatsapp"]
     dados["email"] = request.form["email"]
 
     salvar_dados(dados)
+    return redirect(url_for("admin_perfil"))
 
-    return redirect(url_for("admin"))
 
-
-@app.route("/upload_perfil", methods=["POST"])
-def upload_perfil():
-
+# =========================================================
+# FORMAÇÃO
+# =========================================================
+@app.route("/admin/formacao")
+def admin_formacao():
     if not session.get("logado"):
         return redirect(url_for("login"))
 
-    file = request.files["foto"]
+    return render_template("admin/formacao.html", dados=carregar_dados())
 
-    if file:
 
-        name = secure_filename(file.filename)
+@app.route("/add_formacao", methods=["POST"])
+def add_formacao():
+    if not session.get("logado"):
+        return redirect(url_for("login"))
 
-        path = os.path.join(app.config["UPLOAD_FOLDER"], name)
+    dados = carregar_dados()
 
-        file.save(path)
+    dados["formacao"].append({
+        "curso": request.form["curso"],
+        "instituicao": request.form["instituicao"],
+        "situacao": request.form.get("situacao", "")
+    })
 
-        dados = carregar_dados()
-        dados["foto"] = "uploads/" + name
-        salvar_dados(dados)
+    salvar_dados(dados)
+    return redirect(url_for("admin_formacao"))
 
-    return redirect(url_for("admin"))
+
+# =========================================================
+# EXPERIÊNCIA / TRABALHOS
+# =========================================================
+@app.route("/admin/trabalhos")
+def admin_trabalhos():
+    if not session.get("logado"):
+        return redirect(url_for("login"))
+
+    return render_template("admin/trabalhos.html", dados=carregar_dados())
+
+
+@app.route("/add_experiencia", methods=["POST"])
+def add_experiencia():
+    if not session.get("logado"):
+        return redirect(url_for("login"))
+
+    dados = carregar_dados()
+
+    dados["experiencias"].append({
+        "cargo": request.form["cargo"],
+        "empresa": request.form["empresa"],
+        "descricao": request.form["descricao"]
+    })
+
+    salvar_dados(dados)
+    return redirect(url_for("admin_trabalhos"))
+
+
+# =========================================================
+# PORTFÓLIO + CRUD
+# =========================================================
+@app.route("/admin/portfolio")
+def admin_portfolio():
+    if not session.get("logado"):
+        return redirect(url_for("login"))
+
+    return render_template("admin/portfolio.html", dados=carregar_dados())
 
 
 @app.route("/novo_projeto", methods=["POST"])
 def novo_projeto():
-
     if not session.get("logado"):
         return redirect(url_for("login"))
+
+    dados = carregar_dados()
 
     titulo = request.form["titulo"]
     descricao = request.form["descricao"]
 
     arquivos = request.files.getlist("imagens")
-
-    if len(arquivos) > 7:
-        return "Máximo de 7 imagens por projeto"
-
     imagens = []
 
     for file in arquivos:
-        if file:
-
+        if file and file.filename != "":
             name = secure_filename(file.filename)
-            path = os.path.join(app.config["UPLOAD_FOLDER"], "projetos_" + name)
-
+            path = os.path.join(app.config["UPLOAD_FOLDER"], "proj_" + name)
             file.save(path)
+            imagens.append("uploads/proj_" + name)
 
-            imagens.append("uploads/projetos_" + name)
-
-    dados = carregar_dados()
+    novo_id = max([p["id"] for p in dados["projetos"]] + [0]) + 1
 
     dados["projetos"].append({
-        "id": len(dados["projetos"]) + 1,
+        "id": novo_id,
         "titulo": titulo,
         "descricao": descricao,
         "imagens": imagens
     })
 
     salvar_dados(dados)
+    return redirect(url_for("admin_portfolio"))
 
-    return redirect(url_for("admin"))
+
+# =========================
+# EDITAR PROJETO
+# =========================
+def buscar_projeto(dados, id):
+    return next((p for p in dados["projetos"] if p["id"] == id), None)
+
+
+@app.route("/editar_projeto/<int:id>", methods=["POST"])
+def editar_projeto(id):
+    if not session.get("logado"):
+        return redirect(url_for("login"))
+
+    dados = carregar_dados()
+    projeto = buscar_projeto(dados, id)
+
+    if not projeto:
+        return "Projeto não encontrado"
+
+    projeto["titulo"] = request.form["titulo"]
+    projeto["descricao"] = request.form["descricao"]
+
+    salvar_dados(dados)
+    return redirect(url_for("admin_portfolio"))
+
+
+@app.route("/deletar_projeto/<int:id>")
+def deletar_projeto(id):
+    if not session.get("logado"):
+        return redirect(url_for("login"))
+
+    dados = carregar_dados()
+
+    dados["projetos"] = [
+        p for p in dados["projetos"] if p["id"] != id
+    ]
+
+    salvar_dados(dados)
+    return redirect(url_for("admin_portfolio"))
+
+
+# =========================================================
+# CONTATO
+# =========================================================
+@app.route("/admin/contato")
+def admin_contato():
+    if not session.get("logado"):
+        return redirect(url_for("login"))
+
+    return render_template("admin/contato.html", dados=carregar_dados())
+
+
+@app.route("/salvar_contato", methods=["POST"])
+def salvar_contato():
+    if not session.get("logado"):
+        return redirect(url_for("login"))
+
+    dados = carregar_dados()
+
+    dados["email"] = request.form["email"]
+    dados["instagram"] = request.form["instagram"]
+    dados["linkedin"] = request.form["linkedin"]
+    dados["whatsapp"] = request.form["whatsapp"]
+
+    salvar_dados(dados)
+    return redirect(url_for("admin_contato"))
+
+
+# =========================================================
+# CONFIG
+# =========================================================
+@app.route("/admin/config")
+def admin_config():
+    if not session.get("logado"):
+        return redirect(url_for("login"))
+
+    return render_template("admin/config.html", dados=carregar_dados())
+
+
+# =========================================================
+# FRONT
+# =========================================================
+@app.route("/")
+def index():
+    return render_template("index.html", dados=carregar_dados())
 
 
 @app.route("/projeto/<int:id>")
 def projeto(id):
-
     dados = carregar_dados()
-
     projeto = next((p for p in dados["projetos"] if p["id"] == id), None)
 
     if not projeto:
@@ -174,5 +304,6 @@ def projeto(id):
     return render_template("projeto.html", projeto=projeto)
 
 
+# =========================================================
 if __name__ == "__main__":
     app.run(debug=True)
