@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Painel Admin</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f4f7ff;
+    color:#111;
+}
+
+/* TOPBAR */
+.topbar{
+    background:linear-gradient(135deg,#0f172a,#1d4ed8,#60a5fa);
+    color:white;
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.topbar h1{
+    margin:0;
+    font-size:18px;
+}
+
+.topbar a{
+    color:white;
+    text-decoration:none;
+    background:rgba(255,255,255,0.15);
+    padding:8px 15px;
+    border-radius:8px;
+}
+
+/* CONTAINER */
+.container{
+    max-width:1000px;
+    margin:40px auto;
+    padding:20px;
+    display:grid;
+    gap:20px;
+}
+
+/* CARD */
+.card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+h2{
+    margin-top:0;
+    color:#0f172a;
+}
+
+/* INPUTS */
+input, textarea{
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    border:1px solid #ddd;
+    border-radius:10px;
+    outline:none;
+}
+
+textarea{
+    resize:none;
+    height:120px;
+}
+
+/* BUTTON */
+button{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:12px 18px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    gap:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="topbar">
+    <h1>Painel Administrativo - Portfólio Ana</h1>
+    <a href="/logout">Sair</a>
+</div>
+
+<div class="container">
+
+    <!-- PERFIL -->
+    <div class="card">
+        <h2>Informações do Perfil</h2>
+
+        <form action="/salvar" method="POST">
+
+            <input name="nome" value="{{ dados.nome }}" placeholder="Nome">
+            <input name="cargo" value="{{ dados.cargo }}" placeholder="Cargo">
+            <input name="instagram" value="{{ dados.instagram }}" placeholder="Instagram">
+            <input name="linkedin" value="{{ dados.linkedin }}" placeholder="LinkedIn">
+            <input name="whatsapp" value="{{ dados.whatsapp }}" placeholder="WhatsApp (link wa.me)">
+            <input name="email" value="{{ dados.email }}" placeholder="Email">
+
+            <textarea name="sobre" placeholder="Sobre">{{ dados.sobre }}</textarea>
+
+            <button type="submit">Salvar Informações</button>
+
+        </form>
+    </div>
+
+    <!-- FOTO -->
+    <div class="card">
+        <h2>Foto de Perfil</h2>
+
+        <form action="/upload_perfil" method="POST" enctype="multipart/form-data">
+
+            <input type="file" name="foto" required>
+
+            <button type="submit">Enviar Foto</button>
+
+        </form>
+    </div>
+
+    <!-- PROJETOS -->
+    <div class="card">
+        <h2>Novo Projeto</h2>
+
+        <form action="/novo_projeto" method="POST" enctype="multipart/form-data">
+
+            <input name="titulo" placeholder="Título do projeto">
+
+            <textarea name="descricao" placeholder="Descrição do projeto"></textarea>
+
+            <input type="file" name="imagens" multiple>
+
+            <button type="submit">Adicionar Projeto (até 7 imagens)</button>
+
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>{{ projeto.titulo }}</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#0f172a;
+    color:white;
+}
+
+/* HEADER */
+.header{
+    padding:60px 20px 30px;
+    text-align:center;
+    background:linear-gradient(135deg,#0f172a,#1d4ed8,#60a5fa);
+}
+
+.header h1{
+    margin:0;
+    font-size:2.5rem;
+}
+
+.header p{
+    max-width:700px;
+    margin:15px auto 0;
+    opacity:0.9;
+    line-height:1.6;
+}
+
+/* CONTAINER */
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+/* GALERIA */
+.gallery{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.gallery img{
+    width:100%;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    transition:.3s;
+}
+
+.gallery img:hover{
+    transform:scale(1.01);
+}
+
+/* BOTÃO VOLTAR */
+.back{
+    display:inline-block;
+    margin-top:30px;
+    padding:12px 18px;
+    background:white;
+    color:#1d4ed8;
+    text-decoration:none;
+    border-radius:10px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.back:hover{
+    transform:translateY(-3px);
+}
+
+/* CARD INFO */
+.info{
+    background:white;
+    color:#111;
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:30px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+    <h1>{{ projeto.titulo }}</h1>
+
+</div>
+
+<div class="container">
+
+    <div class="info">
+        <p>{{ projeto.descricao }}</p>
+    </div>
+
+    <div class="gallery">
+
+        {% for img in projeto.imagens %}
+        <img src="{{ url_for('static', filename=img) }}">
+        {% endfor %}
+
+    </div>
+
+    <a class="back" href="/">← Voltar ao Portfólio</a>
+
+</div>
+
+</body>
+</html>

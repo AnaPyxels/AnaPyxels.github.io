@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ dados.nome }}</title>
+
+<style>
+
+/* =========================
+   BASE
+========================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', system-ui, Arial;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#070A12;
+    color:#E5E7EB;
+}
+
+/* =========================
+   HEADER PREMIUM
+========================= */
+.header{
+    position:fixed;
+    top:0;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:16px 6%;
+    z-index:1000;
+
+    background: rgba(10, 15, 30, 0.6);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.logo{
+    font-size:1rem;
+    font-weight:700;
+    color:white;
+    letter-spacing:0.5px;
+}
+
+.nav{
+    display:flex;
+    gap:18px;
+    align-items:center;
+}
+
+.nav a{
+    color:#A1A1AA;
+    text-decoration:none;
+    font-size:0.85rem;
+    font-weight:500;
+    position:relative;
+    transition:.25s;
+    padding:6px 0;
+}
+
+.nav a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-4px;
+    width:0%;
+    height:2px;
+    background:#6366F1;
+    transition:.3s;
+    border-radius:10px;
+}
+
+.nav a:hover{
+    color:white;
+}
+
+.nav a:hover::after{
+    width:100%;
+}
+
+.nav .cta{
+    padding:8px 14px;
+    border-radius:10px;
+    background:rgba(99, 102, 241, 0.15);
+    border:1px solid rgba(99, 102, 241, 0.4);
+    color:#C7D2FE;
+}
+
+.nav .cta:hover{
+    background:#6366F1;
+    color:white;
+    transform:translateY(-1px);
+}
+
+/* =========================
+   HERO
+========================= */
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:120px 20px 80px;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:#6366F1;
+    filter:blur(160px);
+    opacity:0.25;
+    top:-100px;
+    left:-100px;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:#06B6D4;
+    filter:blur(180px);
+    opacity:0.15;
+    bottom:-150px;
+    right:-150px;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:700px;
+}
+
+.hero img{
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid rgba(255,255,255,0.1);
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:3rem;
+    font-weight:800;
+    color:white;
+}
+
+.hero h2{
+    font-size:1.2rem;
+    color:#6366F1;
+    margin-top:10px;
+}
+
+/* =========================
+   SEÇÕES
+========================= */
+section{
+    padding:100px 6%;
+}
+
+.title{
+    text-align:center;
+    font-size:2rem;
+    margin-bottom:40px;
+    color:white;
+}
+
+/* =========================
+   CARD
+========================= */
+.card{
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.06);
+    padding:35px;
+    border-radius:18px;
+    max-width:900px;
+    margin:auto;
+    color:#C7CBD6;
+    line-height:1.8;
+}
+
+/* =========================
+   PORTFÓLIO
+========================= */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:22px;
+}
+
+.project{
+    background:rgba(255,255,255,0.03);
+    border-radius:16px;
+    overflow:hidden;
+    text-decoration:none;
+    color:white;
+    border:1px solid rgba(255,255,255,0.05);
+    transition:.3s;
+}
+
+.project:hover{
+    transform:translateY(-6px);
+    border-color:#6366F1;
+}
+
+.project img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.project div{
+    padding:15px;
+    font-weight:600;
+}
+
+/* =========================
+   CONTATO
+========================= */
+.social{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+.social a{
+    padding:12px 18px;
+    border-radius:12px;
+    text-decoration:none;
+    color:white;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    transition:.3s;
+}
+
+.social a:hover{
+    background:#6366F1;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+@media(max-width:768px){
+    .hero h1{font-size:2.2rem;}
+    .nav{display:none;}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+
+    <div class="logo">{{ dados.nome }}</div>
+
+    <nav class="nav">
+        <a href="#home">Home</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#formacao">Formação</a>
+        <a href="#certificacoes">Certificações</a>
+        <a href="#portfolio">Portfólio</a>
+        <a href="#contato" class="cta">Contato</a>
+    </nav>
+
+</header>
+
+<!-- HERO -->
+<section id="home" class="hero">
+
+    <div class="hero-content">
+
+        {% if dados.foto %}
+        <img src="{{ url_for('static', filename=dados.foto) }}">
+        {% endif %}
+
+        <h1>{{ dados.nome }}</h1>
+        <h2>{{ dados.cargo }}</h2>
+
+    </div>
+
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+    <h2 class="title">Sobre</h2>
+    <div class="card">{{ dados.sobre }}</div>
+</section>
+
+<!-- FORMAÇÃO -->
+<section id="formacao">
+    <h2 class="title">Formação</h2>
+    <div class="card">Em breve...</div>
+</section>
+
+<!-- CERTIFICAÇÕES -->
+<section id="certificacoes">
+    <h2 class="title">Certificações</h2>
+    <div class="card">Em breve...</div>
+</section>
+
+<!-- PORTFÓLIO -->
+<section id="portfolio">
+    <h2 class="title">Portfólio</h2>
+
+    <div class="grid">
+
+        {% for p in dados.projetos %}
+
+        <a href="/projeto/{{ p.id }}" class="project">
+            <img src="{{ url_for('static', filename=p.imagens[0]) }}">
+            <div>{{ p.titulo }}</div>
+        </a>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+    <h2 class="title">Contato</h2>
+
+    <div class="social">
+
+        {% if dados.instagram %}
+        <a href="{{ dados.instagram }}">Instagram</a>
+        {% endif %}
+
+        {% if dados.linkedin %}
+        <a href="{{ dados.linkedin }}">LinkedIn</a>
+        {% endif %}
+
+        {% if dados.whatsapp %}
+        <a href="{{ dados.whatsapp }}">WhatsApp</a>
+        {% endif %}
+
+        {% if dados.email %}
+        <a href="mailto:{{ dados.email }}">Email</a>
+        {% endif %}
+
+    </div>
+
+</section>
+
+</body>
+</html>

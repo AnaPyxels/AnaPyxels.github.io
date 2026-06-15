@@ -1,0 +1,26 @@
+{
+    "nome": "Ana Carolina Gonçalves Lopes",
+    "cargo": "Estagiária de Marketing",
+    "sobre": "Sou engraçado",
+    "instagram": "https://www.instagram.com/jheex.silva/",
+    "linkedin": "https://br.linkedin.com/company/anagovbr",
+    "whatsapp": "11981382542",
+    "email": "teste@teste.com.br",
+    "foto": "uploads/teste.webp",
+    "projetos": [
+        {
+            "id": 1,
+            "titulo": "testando",
+            "descricao": "testei",
+            "imagens": [
+                "uploads/projetos_7.jpg",
+                "uploads/projetos_6.jpg",
+                "uploads/projetos_5.jpg",
+                "uploads/projetos_4.jpg",
+                "uploads/projetos_3.jpg",
+                "uploads/projetos_2.jpg",
+                "uploads/projetos_1.jpg"
+            ]
+        }
+    ]
+}
