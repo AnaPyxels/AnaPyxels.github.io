@@ -992,44 +992,50 @@ section{
 
     <h2 class="title">Formação Acadêmica</h2>
 
-    <div class="card" style="display:flex; gap:20px; align-items:center; flex-wrap:wrap;">
+    {% if dados.formacao %}
+        {% for f in dados.formacao %}
 
-        <!-- IMAGEM -->
-        <img 
-            src="{{ url_for('static', filename='Uploads/anhanguera.png') }}" 
-            alt="Anhanguera Educacional"
-            style="
-                width:140px;
-                height:auto;
-                border-radius:12px;
-                background:rgba(255,255,255,0.05);
-                padding:10px;
-                object-fit:contain;
-            "
-        >
+        <div class="card" style="display:flex; gap:20px; align-items:center; flex-wrap:wrap; margin-bottom:20px;">
 
-        <!-- TEXTO -->
-        <div style="flex:1; min-width:250px;">
+            {% if f.imagem %}
+                <img 
+                    src="{{ url_for('static', filename=f.imagem) }}" 
+                    alt="imagem"
+                    style="
+                        width:140px;
+                        border-radius:12px;
+                        background:rgba(255,255,255,0.05);
+                        padding:10px;
+                        object-fit:contain;
+                    "
+                >
+            {% endif %}
 
-            <h3 style="color:white; margin-bottom:10px;">
-                Marketing Digital - Tecnólogo
-            </h3>
+            <div style="flex:1; min-width:250px;">
 
-            <p style="color:#A1A1AA; margin-bottom:6px;">
-                <strong>Situação:</strong> Cursando
-            </p>
+                <h3 style="color:white;">{{ f.curso }}</h3>
 
-            <p style="color:#A1A1AA; margin-bottom:6px;">
-                <strong>Previsão de Conclusão:</strong> 2028
-            </p>
+                <p style="color:#A1A1AA;">
+                    <strong>Situação:</strong> {{ f.situacao or f.status }}
+                </p>
 
-            <p style="color:#A1A1AA;">
-                <strong>Instituição:</strong> Anhanguera Educacional LTDA
-            </p>
+                <p style="color:#A1A1AA;">
+                    <strong>Conclusão:</strong> {{ f.conclusao }}</p>
+
+                <p style="color:#A1A1AA;">
+                    <strong>Instituição:</strong> {{ f.instituicao }}
+                </p>
+
+            </div>
 
         </div>
 
-    </div>
+        {% endfor %}
+    {% else %}
+        <p style="text-align:center; color:#777;">
+            Nenhuma formação cadastrada ainda.
+        </p>
+    {% endif %}
 
 </section>
 
@@ -1039,93 +1045,58 @@ section{
 
     <div class="timeline">
 
-        <!-- 1 -->
-        <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
+        {% if dados.experiencia and dados.experiencia|length > 0 %}
 
-                <h3>Auxiliar de Caixa</h3>
-                <span class="company">Hagams Drogaria LTDA · Tempo integral</span>
-                <span class="date">Mai 2024 - Atualmente · 2 anos e 2 meses</span>
+            {% for t in dados.experiencia %}
 
-                <p>
-                    Atendimento ao cliente, operações de caixa e suporte administrativo.
-                </p>
+            <div class="timeline-item">
 
-                <div class="tags">
-                    <span>Microsoft Office</span>
-                    <span>Atendimento ao cliente</span>
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-content">
+
+                    <!-- CARGO -->
+                    <h3>{{ t.cargo or 'Cargo não informado' }}</h3>
+
+                    <!-- EMPRESA -->
+                    <span class="company">
+                        {{ t.empresa or 'Empresa não informada' }}
+                    </span>
+
+                    <!-- PERÍODO -->
+                    <span class="date">
+                        {{ t.periodo or 'Período não informado' }}
+                    </span>
+
+                    <!-- DESCRIÇÃO -->
+                    {% if t.descricao %}
+                        <p>{{ t.descricao }}</p>
+                    {% else %}
+                        <p style="opacity:0.7;">Descrição não informada.</p>
+                    {% endif %}
+
+                    <!-- TAGS -->
+                    {% if t.tags and t.tags|length > 0 %}
+                    <div class="tags">
+                        {% for tag in t.tags %}
+                            <span>{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
                 </div>
 
             </div>
-        </div>
 
-        <!-- 2 -->
-        <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
+            {% endfor %}
 
-                <h3>Atendimento ao Cliente</h3>
-                <span class="company">M.M Story · Tempo integral</span>
-                <span class="date">Abr 2023 - Jan 2024 · 10 meses · Diadema - SP</span>
+        {% else %}
 
-                <p>
-                    Atendimento ao cliente, organização de processos e suporte operacional.
-                </p>
-
-                <div class="tags">
-                    <span>Comunicação</span>
-                    <span>Organização</span>
-                </div>
-
+            <div class="card" style="text-align:center;">
+                Nenhuma experiência cadastrada ainda.
             </div>
-        </div>
 
-        <!-- 3 -->
-        <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-
-                <h3>Auxiliar de Logística</h3>
-                <span class="company">CEVA Logistics · Tempo integral</span>
-                <span class="date">Mar 2022 - Jan 2023 · 11 meses · Diadema - SP</span>
-
-                <p>
-                    Controle de estoque, separação de mercadorias e suporte logístico.
-                </p>
-
-                <div class="tags">
-                    <span>Logística</span>
-                    <span>Organização</span>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- 4 -->
-        <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-
-                <h3>Recepcionista</h3>
-                <span class="company">Espaço Lia Sousa</span>
-                <span class="date">2020 - 2022</span>
-
-                <p>
-                    Atuação na divulgação de serviços, criação e edição de vídeos para redes sociais,
-                    contribuindo para o fortalecimento da presença digital e captação de clientes.
-                </p>
-
-                <div class="tags">
-                    <span>Atendimento ao cliente</span>
-                    <span>Organização</span>
-                    <span>Redes sociais</span>
-                    <span>Edição de vídeo</span>
-                    <span>Marketing digital</span>
-                </div>
-
-            </div>
-        </div>
+        {% endif %}
 
     </div>
 

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Admin - Formação Acadêmica</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+body{
+    margin:0;
+    font-family:'Segoe UI', Arial;
+    background:#070A12;
+    color:#E5E7EB;
+}
+
+/* TOPBAR */
+.topbar{
+    background:rgba(10,15,30,0.75);
+    backdrop-filter: blur(14px);
+    border-bottom:1px solid rgba(255,255,255,0.06);
+    padding:18px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.topbar div{
+    font-size:15px;
+    font-weight:600;
+}
+
+.topbar a{
+    color:white;
+    text-decoration:none;
+    background:rgba(99,102,241,0.2);
+    border:1px solid rgba(99,102,241,0.4);
+    padding:8px 14px;
+    border-radius:10px;
+}
+
+/* CONTAINER */
+.container{
+    max-width:900px;
+    margin:40px auto;
+    padding:0 20px;
+}
+
+/* CARD */
+.card{
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:18px;
+    padding:30px;
+    margin-bottom:25px;
+}
+
+/* TITLE */
+.title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:20px;
+    font-size:18px;
+    font-weight:600;
+}
+
+.title i{
+    color:#6366F1;
+}
+
+/* INPUTS */
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.08);
+    background:rgba(255,255,255,0.03);
+    color:white;
+}
+
+/* BUTTON */
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    background:#6366F1;
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+}
+
+/* LIST */
+.list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.item{
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.06);
+    border-radius:14px;
+    padding:15px;
+    display:flex;
+    gap:15px;
+    align-items:center;
+}
+
+/* imagem */
+.item img{
+    width:70px;
+    height:70px;
+    object-fit:contain;
+    border-radius:10px;
+    background:rgba(255,255,255,0.05);
+    padding:5px;
+}
+
+.item h4{
+    margin:0;
+    font-size:15px;
+}
+
+.item span{
+    color:#A1A1AA;
+    font-size:13px;
+}
+
+.actions{
+    margin-top:8px;
+    font-size:12px;
+}
+
+.actions a{
+    color:#A1A1AA;
+    margin-right:10px;
+    text-decoration:none;
+}
+
+.actions a:hover{
+    color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <div><i class="fa-solid fa-graduation-cap"></i> Formação Acadêmica</div>
+    <a href="/admin">Voltar</a>
+</div>
+
+<div class="container">
+
+    <!-- FORM -->
+    <div class="card">
+
+        <div class="title">
+            <i class="fa-solid fa-plus"></i>
+            Adicionar Formação
+        </div>
+
+        <form action="/add_formacao" method="POST" enctype="multipart/form-data">
+
+            <input name="curso" placeholder="Curso" required>
+            <input name="instituicao" placeholder="Instituição" required>
+            <input name="situacao" placeholder="Situação" required>
+            <input name="conclusao" placeholder="Conclusão" required>
+
+            <input type="file" name="imagem" accept="image/*">
+
+            <button type="submit">
+                Salvar Formação
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- LIST -->
+    <div class="card">
+
+        <div class="title">
+            <i class="fa-solid fa-list"></i>
+            Formações cadastradas
+        </div>
+
+        <div class="list">
+
+            {% if dados.formacao %}
+
+                {% for f in dados.formacao %}
+
+                <div class="item">
+
+                {% if f.imagem %}
+                    <img src="{{ url_for('static', filename=f.imagem) }}" alt="imagem">
+                {% endif %}
+
+                    <div>
+                        <h4>{{ f.curso }} - {{ f.instituicao }}</h4>
+                        <span>{{ f.situacao }} | {{ f.conclusao }}</span>
+
+                        <div class="actions">
+                            <a href="/editar_formacao/{{ f.id }}">Editar</a>
+                            <a href="/deletar_formacao/{{ f.id }}">Excluir</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+                <p style="color:#A1A1AA;">Nenhuma formação cadastrada ainda.</p>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

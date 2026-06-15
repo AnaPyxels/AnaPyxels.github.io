@@ -5,6 +5,39 @@
     "linkedin": "https://www.linkedin.com/in/analopes31/",
     "whatsapp": "11933478019",
     "email": "Analopes3108@gmail.com",
+    "formacao": [
+        {
+            "id": 1,
+            "curso": "Marketing Digital - Tecnólogo",
+            "instituicao": "Anhanguera Educacional",
+            "situacao": "Cursando",
+            "conclusao": "2028",
+            "imagem": "uploads/anhanguera.png"
+        }
+    ],
+    "experiencias": [
+        {
+            "cargo": "Auxiliar de Caixa",
+            "empresa": "Hagams Drogaria LTDA",
+            "periodo": "2024 - Atual",
+            "descricao": "Atendimento ao cliente e operações de caixa.",
+            "tags": ["Atendimento", "Caixa", "Office"]
+        },
+        {
+            "cargo": "Atendente",
+            "empresa": "M&M Store",
+            "periodo": "2023 - 2024",
+            "descricao": "Atendimento ao cliente e suporte nas vendas.",
+            "tags": ["Atendimento", "Vendas"]
+        },
+        {
+            "cargo": "Aprendiz de Logística",
+            "empresa": "CEVA Logística",
+            "periodo": "2022 - 2023",
+            "descricao": "Apoio em processos logísticos e controle de estoque.",
+            "tags": ["Logística", "Organização"]
+        }
+    ],
     "foto": "uploads/1777952550120.png",
     "projetos": [
         {

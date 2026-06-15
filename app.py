@@ -24,7 +24,20 @@ ADMIN_PASSWORD = "Ana@2026Portfolio"
 def carregar_dados():
     try:
         with open(JSON_FILE, "r", encoding="utf-8") as f:
-            return json.load(f)
+            dados = json.load(f)
+
+        # 🔥 GARANTE COMPATIBILIDADE (evita bugs antigos)
+        if "formacao" not in dados:
+            dados["formacao"] = []
+
+        if "experiencias" not in dados:
+            dados["experiencias"] = []
+
+        if "projetos" not in dados:
+            dados["projetos"] = []
+
+        return dados
+
     except:
         return {
             "nome": "Ana Carolina Gonçalves Lopes",
@@ -46,7 +59,7 @@ def salvar_dados(dados):
 
 
 # =========================================================
-# LOGIN / LOGOUT
+# LOGIN
 # =========================================================
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -70,7 +83,7 @@ def logout():
 
 
 # =========================================================
-# DASHBOARD
+# ADMIN
 # =========================================================
 @app.route("/admin")
 def admin():
@@ -125,18 +138,87 @@ def add_formacao():
 
     dados = carregar_dados()
 
+    file = request.files.get("imagem")
+    imagem_path = ""
+
+    if file and file.filename != "":
+        name = secure_filename(file.filename)
+        path = os.path.join(app.config["UPLOAD_FOLDER"], "formacao_" + name)
+        file.save(path)
+        imagem_path = "uploads/formacao_" + name
+
+    # 🔥 AQUI É ONDE ENTRA O ID NOVO
+    nova_id = max([f.get("id", 0) for f in dados["formacao"]] + [0]) + 1
+
     dados["formacao"].append({
+        "id": nova_id,
         "curso": request.form["curso"],
         "instituicao": request.form["instituicao"],
-        "situacao": request.form.get("situacao", "")
+        "situacao": request.form["situacao"],
+        "conclusao": request.form["conclusao"],
+        "imagem": imagem_path
     })
 
     salvar_dados(dados)
     return redirect(url_for("admin_formacao"))
 
 
+@app.route("/deletar_formacao/<int:id>")
+def deletar_formacao(id):
+    if not session.get("logado"):
+        return redirect(url_for("login"))
+
+    dados = carregar_dados()
+
+    dados["formacao"] = [
+        f for f in dados["formacao"]
+        if f.get("id") != id
+    ]
+
+    salvar_dados(dados)
+    return redirect(url_for("admin_formacao"))
+
+@app.route("/editar_formacao/<int:id>", methods=["GET", "POST"])
+def editar_formacao(id):
+    if not session.get("logado"):
+        return redirect(url_for("login"))
+
+    dados = carregar_dados()
+
+    # busca item
+    formacao = next((f for f in dados["formacao"] if f.get("id") == id), None)
+
+    if not formacao:
+        return "Formação não encontrada"
+
+    # =========================
+    # SALVAR (POST)
+    # =========================
+    if request.method == "POST":
+
+        formacao["curso"] = request.form["curso"]
+        formacao["instituicao"] = request.form["instituicao"]
+        formacao["situacao"] = request.form["situacao"]
+        formacao["conclusao"] = request.form["conclusao"]
+
+        file = request.files.get("imagem")
+
+        if file and file.filename != "":
+            name = secure_filename(file.filename)
+            path = os.path.join(app.config["UPLOAD_FOLDER"], "formacao_" + name)
+            file.save(path)
+            formacao["imagem"] = "uploads/formacao_" + name
+
+        salvar_dados(dados)
+        return redirect(url_for("admin_formacao"))
+
+    # =========================
+    # FORM (GET)
+    # =========================
+    return render_template("admin/editar_formacao.html", f=formacao)
+
 # =========================================================
-# EXPERIÊNCIA / TRABALHOS
+# EXPERIÊNCIA
 # =========================================================
 @app.route("/admin/trabalhos")
 def admin_trabalhos():
@@ -146,17 +228,31 @@ def admin_trabalhos():
     return render_template("admin/trabalhos.html", dados=carregar_dados())
 
 
-@app.route("/add_experiencia", methods=["POST"])
+@app.route("/add_experiencias", methods=["POST"])
 def add_experiencia():
     if not session.get("logado"):
         return redirect(url_for("login"))
 
     dados = carregar_dados()
 
+    # garante lista
+    if "experiencias" not in dados:
+        dados["experiencias"] = []
+
+    # 🔥 gera ID
+    nova_id = max([e.get("id", 0) for e in dados["experiencias"]] + [0]) + 1
+
+    # tags (string → lista)
+    tags_raw = request.form.get("tags", "")
+    tags = [t.strip() for t in tags_raw.split(",") if t.strip()]
+
     dados["experiencias"].append({
-        "cargo": request.form["cargo"],
-        "empresa": request.form["empresa"],
-        "descricao": request.form["descricao"]
+        "id": nova_id,
+        "cargo": request.form.get("cargo", ""),
+        "empresa": request.form.get("empresa", ""),
+        "periodo": request.form.get("periodo", ""),
+        "descricao": request.form.get("descricao", ""),
+        "tags": tags
     })
 
     salvar_dados(dados)
@@ -164,7 +260,7 @@ def add_experiencia():
 
 
 # =========================================================
-# PORTFÓLIO + CRUD
+# PORTFÓLIO
 # =========================================================
 @app.route("/admin/portfolio")
 def admin_portfolio():
@@ -194,7 +290,7 @@ def novo_projeto():
             file.save(path)
             imagens.append("uploads/proj_" + name)
 
-    novo_id = max([p["id"] for p in dados["projetos"]] + [0]) + 1
+    novo_id = max([p.get("id", 0) for p in dados["projetos"]] + [0]) + 1
 
     dados["projetos"].append({
         "id": novo_id,
@@ -207,11 +303,8 @@ def novo_projeto():
     return redirect(url_for("admin_portfolio"))
 
 
-# =========================
-# EDITAR PROJETO
-# =========================
 def buscar_projeto(dados, id):
-    return next((p for p in dados["projetos"] if p["id"] == id), None)
+    return next((p for p in dados["projetos"] if p.get("id") == id), None)
 
 
 @app.route("/editar_projeto/<int:id>", methods=["POST"])
@@ -240,7 +333,8 @@ def deletar_projeto(id):
     dados = carregar_dados()
 
     dados["projetos"] = [
-        p for p in dados["projetos"] if p["id"] != id
+        p for p in dados["projetos"]
+        if p.get("id") != id
     ]
 
     salvar_dados(dados)
@@ -296,7 +390,8 @@ def index():
 @app.route("/projeto/<int:id>")
 def projeto(id):
     dados = carregar_dados()
-    projeto = next((p for p in dados["projetos"] if p["id"] == id), None)
+
+    projeto = next((p for p in dados["projetos"] if p.get("id") == id), None)
 
     if not projeto:
         return "Projeto não encontrado"

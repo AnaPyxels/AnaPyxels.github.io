@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin - Experiências</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial;
+    background:#070A12;
+    color:white;
+}
+
+/* LAYOUT */
+.container{
+    max-width:1000px;
+    margin:40px auto;
+    padding:0 20px;
+}
+
+/* CARD BASE */
+.card{
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:16px;
+    padding:25px;
+    margin-bottom:25px;
+}
+
+/* TITULO */
+h2{
+    margin-bottom:15px;
+    font-size:20px;
+}
+
+/* FORM */
+input, textarea{
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    border-radius:10px;
+    border:none;
+    background:#111827;
+    color:white;
+    outline:none;
+    font-size:14px;
+}
+
+textarea{
+    height:100px;
+    resize:none;
+}
+
+/* BOTAO */
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(135deg,#6366F1,#4F46E5);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+}
+
+/* LISTA */
+.item{
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.06);
+    padding:18px;
+    border-radius:14px;
+    margin-bottom:12px;
+}
+
+.item h3{
+    margin:0;
+    font-size:16px;
+}
+
+.item span{
+    color:#A1A1AA;
+    font-size:13px;
+    display:block;
+    margin-top:4px;
+}
+
+.item p{
+    margin-top:10px;
+    color:#C7CBD6;
+    font-size:14px;
+    line-height:1.5;
+}
+
+/* TAGS */
+.tags{
+    margin-top:10px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+}
+
+.tags span{
+    font-size:12px;
+    padding:4px 8px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    color:#d1d5db;
+}
+
+/* AÇÕES */
+.actions{
+    margin-top:12px;
+    display:flex;
+    gap:12px;
+}
+
+.actions a{
+    font-size:13px;
+    text-decoration:none;
+    color:#A1A1AA;
+    transition:.2s;
+}
+
+.actions a:hover{
+    color:white;
+}
+
+/* HEADER SIMPLES */
+.topbar{
+    background:rgba(10,15,30,0.7);
+    padding:15px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid rgba(255,255,255,0.06);
+}
+
+.topbar a{
+    color:white;
+    text-decoration:none;
+    background:rgba(99,102,241,0.15);
+    border:1px solid rgba(99,102,241,0.4);
+    padding:8px 14px;
+    border-radius:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+    <div>📊 Experiências Profissionais</div>
+    <a href="/admin">Voltar</a>
+</div>
+
+<div class="container">
+
+    <!-- FORMULÁRIO -->
+    <div class="card">
+
+        <h2>Adicionar Experiência</h2>
+
+        <form action="/add_experiencias" method="POST">
+
+            <input name="cargo" placeholder="Cargo" required>
+            <input name="empresa" placeholder="Empresa" required>
+            <input name="periodo" placeholder="Período (Ex: 2024 - Atual)" required>
+
+            <textarea name="descricao" placeholder="Descrição da função" required></textarea>
+
+            <input name="tags" placeholder="Tags (Ex: Excel, Atendimento, Organização)">
+
+            <button type="submit">Salvar Experiência</button>
+
+        </form>
+
+    </div>
+
+    <!-- LISTA -->
+    <div class="card">
+
+        <h2>Experiências cadastradas</h2>
+
+        {% if dados.experiencias %}
+
+            {% for t in dados.experiencias %}
+
+            <div class="item">
+
+                <h3>{{ t.cargo }}</h3>
+
+                <span><strong>Empresa:</strong> {{ t.empresa }}</span>
+                <span><strong>Período:</strong> {{ t.periodo }}</span>
+
+                <p>{{ t.descricao }}</p>
+
+                {% if t.tags %}
+                <div class="tags">
+                    {% for tag in t.tags %}
+                        <span>{{ tag }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <div class="actions">
+                    <a href="/editar_experiencias/{{ loop.index0 }}">Editar</a>
+                    <a href="/deletar_experiencias/{{ loop.index0 }}">Excluir</a>
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+            <p style="color:#A1A1AA;">Nenhuma experiência cadastrada ainda.</p>
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>
