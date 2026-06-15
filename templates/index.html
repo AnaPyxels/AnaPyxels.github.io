@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <title>{{ dados.nome }}</title>
 
 <style>
@@ -846,6 +847,15 @@ section{
     color:#A1A1AA;
 }
 
+.icon i{
+    font-size:1.3rem;
+    color:white;
+}
+
+.contact-card{
+    backdrop-filter: blur(10px);
+}
+
 /* CORES ESPECÍFICAS */
 .instagram:hover .icon{ background:#E1306C22; }
 .linkedin:hover .icon{ background:#0A66C222; }
@@ -933,7 +943,7 @@ section{
         <div class="hero-actions">
             <a href="#portfolio" class="btn-primary">Meu Portfólio</a>
             <a href="#contato" class="btn-secondary">Fale comigo</a>
-            <a href="#" class="btn-outline">Baixar Currículo</a>
+            <a href="{{ url_for('static', filename='Uploads/Curriculo 15.06.2026 - Ana Carolina.pdf') }}"class="btn-outline"download>Baixar Currículo</a>
         </div>
 
     </div>
@@ -1195,7 +1205,7 @@ section{
 
         {% if dados.instagram %}
         <a class="contact-card instagram" href="{{ dados.instagram }}" target="_blank">
-            <div class="icon">📸</div>
+            <div class="icon"><i class="fa-brands fa-instagram"></i></div>
             <div class="contact-info">
                 <h3>Instagram</h3>
                 <span>Veja meu conteúdo</span>
@@ -1205,7 +1215,7 @@ section{
 
         {% if dados.linkedin %}
         <a class="contact-card linkedin" href="{{ dados.linkedin }}" target="_blank">
-            <div class="icon">💼</div>
+            <div class="icon"><i class="fa-brands fa-linkedin"></i></div>
             <div class="contact-info">
                 <h3>LinkedIn</h3>
                 <span>Conexão profissional</span>
@@ -1215,7 +1225,7 @@ section{
 
         {% if dados.whatsapp %}
         <a class="contact-card whatsapp" href="{{ dados.whatsapp }}" target="_blank">
-            <div class="icon">💬</div>
+            <div class="icon"><i class="fa-brands fa-whatsapp"></i></div>
             <div class="contact-info">
                 <h3>WhatsApp</h3>
                 <span>Resposta rápida</span>
@@ -1225,7 +1235,7 @@ section{
 
         {% if dados.email %}
         <a class="contact-card email" href="mailto:{{ dados.email }}">
-            <div class="icon">✉️</div>
+            <div class="icon"><i class="fa-solid fa-envelope"></i></div>
             <div class="contact-info">
                 <h3>Email</h3>
                 <span>Contato formal</span>
