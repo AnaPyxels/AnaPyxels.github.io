@@ -44,6 +44,29 @@ body{
     border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
+/* LOGO COM AVATAR */
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.mini-avatar{
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid rgba(255,255,255,0.2);
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+.logo-text{
+    font-size:1rem;
+    font-weight:700;
+    color:white;
+    letter-spacing:0.3px;
+}
+
 .logo{
     font-size:1rem;
     font-weight:700;
@@ -270,7 +293,15 @@ section{
 <!-- HEADER -->
 <header class="header">
 
-    <div class="logo">{{ dados.nome }}</div>
+    <div class="logo-area">
+
+        {% if dados.foto %}
+        <img class="mini-avatar" src="{{ url_for('static', filename=dados.foto) }}">
+        {% endif %}
+
+        <span class="logo-text">{{ dados.nome }}</span>
+
+    </div>
 
     <nav class="nav">
         <a href="#home">Home</a>
