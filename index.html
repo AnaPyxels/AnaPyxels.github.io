@@ -178,12 +178,12 @@
         }
 
         .buttons {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 12px;
-                margin-top: 20px;
-                flex-wrap: nowrap
-            }
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: nowrap
+        }
 
         .buttons .btn {
             display: flex;
@@ -323,170 +323,263 @@
         SOBRE MIM
         ========================= */
 
-        .about{
-            max-width:1100px;
-            margin:auto;
+        .about {
+            max-width: 1100px;
+            margin: auto;
         }
 
-        .about .section-title{
-            margin-bottom:35px;
+        .about .section-title {
+            margin-bottom: 35px;
         }
 
-        .about-text{
-            max-width:900px;
-            margin:0 auto 25px;
-            text-align:center;
+        .about-text {
+            max-width: 900px;
+            margin: 0 auto 25px;
+            text-align: center;
 
-            color:var(--muted);
-            line-height:2;
-            font-size:1.05rem;
+            color: var(--muted);
+            line-height: 2;
+            font-size: 1.05rem;
         }
 
-        .about-highlights{
-            display:grid;
-            grid-template-columns:repeat(3,1fr);
-            gap:24px;
+        .about-highlights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
 
-            margin-top:50px;
+            margin-top: 50px;
         }
 
-        .about-card{
-            padding:30px;
-            border-radius:24px;
+        .about-card {
+            padding: 30px;
+            border-radius: 24px;
 
-            transition:.3s ease;
+            transition: .3s ease;
         }
 
-        .about-card:hover{
-            transform:translateY(-6px);
-            border-color:rgba(138,92,255,.35);
+        .about-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(138, 92, 255, .35);
         }
 
-        .about-card i{
-            font-size:1.8rem;
+        .about-card i {
+            font-size: 1.8rem;
 
-            margin-bottom:18px;
-            
-            background:var(--gradient);
+            margin-bottom: 18px;
+
+            background: var(--gradient);
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .about-card h3{
-            margin-bottom:12px;
+        .about-card h3 {
+            margin-bottom: 12px;
 
-            font-size:1.25rem;
-            font-weight:600;
+            font-size: 1.25rem;
+            font-weight: 600;
         }
 
-        .about-card p{
-            color:var(--muted);
-            line-height:1.8;
+        .about-card p {
+            color: var(--muted);
+            line-height: 1.8;
         }
 
         /* =========================
         RESPONSIVO
         ========================= */
 
-        @media(max-width:900px){
+        @media(max-width:900px) {
 
-            .about-highlights{
-                grid-template-columns:1fr;
+            .about-highlights {
+                grid-template-columns: 1fr;
             }
 
-            .about-text{
-                text-align:left;
+            .about-text {
+                text-align: left;
             }
 
         }
 
         /* =========================
-        FORMAÇÃO ACADÊMICA
+        Certificação
         ========================= */
 
-        .education-card{
-            max-width:900px;
-            margin:auto;
+        .education-card {
+            max-width: 900px;
+            margin: auto;
 
-            display:flex;
-            align-items:center;
-            gap:30px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
 
-            padding:35px;
-            border-radius:24px;
+            padding: 35px;
+            border-radius: 24px;
         }
 
-        .education-icon{
-            min-width:90px;
-            width:90px;
-            height:90px;
+        .education-icon {
+            min-width: 90px;
+            width: 90px;
+            height: 90px;
 
-            display:flex;
-            align-items:center;
-            justify-content:center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-            border-radius:20px;
+            border-radius: 20px;
 
-            background:rgba(255,255,255,.05);
-            border:1px solid rgba(255,255,255,.1);
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .1);
         }
 
-        .education-icon i{
-            font-size:2.2rem;
+        .education-icon i {
+            font-size: 2.2rem;
 
-            background:var(--gradient);
+            background: var(--gradient);
             background-clip: text;
             -webkit-background-clip: text;
-            -webkit-text-fill-color:transparent;
+            -webkit-text-fill-color: transparent;
         }
 
-        .education-content h3{
-            font-size:1.5rem;
-            margin-bottom:8px;
+        .education-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
         }
 
-        .education-school{
-            display:block;
-            color:#8fa7ff;
-            margin-bottom:18px;
+        .education-school {
+            display: block;
+            color: #8fa7ff;
+            margin-bottom: 18px;
         }
 
-        .education-content p{
-            color:var(--muted);
-            line-height:1.8;
+        .education-content p {
+            color: var(--muted);
+            line-height: 1.8;
         }
 
-        .education-info{
-            display:flex;
-            gap:50px;
-            margin-top:25px;
+        .education-info {
+            display: flex;
+            gap: 50px;
+            margin-top: 25px;
         }
 
-        .education-info div{
-            display:flex;
-            flex-direction:column;
+        .education-info div {
+            display: flex;
+            flex-direction: column;
         }
 
-        .education-info strong{
-            margin-bottom:5px;
+        .education-info strong {
+            margin-bottom: 5px;
         }
 
-        .education-info span{
-            color:var(--muted);
+        .education-info span {
+            color: var(--muted);
         }
 
-        @media(max-width:900px){
+        .cert-container {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 25px;
+            margin-top: 40px;
+        }
 
-            .education-card{
-                flex-direction:column;
-                text-align:center;
+        /* LISTA */
+        .cert-list {
+            padding: 15px;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .cert-item {
+            text-align: left;
+            padding: 14px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, .08);
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .cert-item span {
+            display: block;
+            font-size: .8rem;
+            color: var(--muted);
+        }
+
+        .cert-item:hover {
+            border-color: #8a5cff;
+            transform: translateX(4px);
+        }
+
+        .cert-item.active {
+            background: rgba(138, 92, 255, .15);
+            border-color: #8a5cff;
+        }
+
+        /* DETALHE */
+        .cert-detail {
+            padding: 30px;
+            border-radius: 24px;
+        }
+
+        .cert-detail h3 {
+            margin-bottom: 8px;
+        }
+
+        .cert-org {
+            color: #8fa7ff;
+            margin-bottom: 6px;
+        }
+
+        .cert-date {
+            color: var(--muted);
+            font-size: .9rem;
+            margin-bottom: 15px;
+        }
+
+        .cert-desc {
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        /* TAGS */
+        .cert-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .cert-tags span {
+            font-size: .75rem;
+            padding: 5px 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .1);
+            color: var(--muted);
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 900px) {
+            .cert-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width:900px) {
+
+            .education-card {
+                flex-direction: column;
+                text-align: center;
             }
 
-            .education-info{
-                justify-content:center;
-                flex-wrap:wrap;
-                gap:25px;
+            .education-info {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 25px;
             }
 
         }
@@ -495,75 +588,75 @@
         PROJETOS
         ========================= */
 
-        .projects-grid{
-            display:grid;
-            grid-template-columns:repeat(3,1fr);
-            gap:25px;
-            margin-top:40px;
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 40px;
         }
 
-        .project-card{
-            border-radius:24px;
-            overflow:hidden;
-            display:flex;
-            flex-direction:column;
-            text-decoration:none;
-            color:inherit;
-            transition:.3s ease;
+        .project-card {
+            border-radius: 24px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            transition: .3s ease;
         }
 
-        .project-card:hover{
-            transform:translateY(-8px);
-            border-color:rgba(138,92,255,.35);
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(138, 92, 255, .35);
         }
 
-        .project-card img{
-            width:100%;
-            height:200px;
-            object-fit:cover;
-            display:block;
-            transition:.4s ease;
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            transition: .4s ease;
         }
 
-        .project-card:hover img{
-            transform:scale(1.05);
+        .project-card:hover img {
+            transform: scale(1.05);
         }
 
-        .project-content{
-            padding:25px;
+        .project-content {
+            padding: 25px;
         }
 
-        .project-content h3{
-            margin-bottom:10px;
-            font-size:1.3rem;
+        .project-content h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
         }
 
-        .project-content p{
-            color:var(--muted);
-            line-height:1.7;
-            margin-bottom:15px;
+        .project-content p {
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: 15px;
         }
 
-        .project-tags{
-            display:flex;
-            flex-wrap:wrap;
-            gap:10px;
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
-        .project-tags span{
-            font-size:.8rem;
-            padding:6px 12px;
-            border-radius:999px;
-            background:rgba(255,255,255,.06);
-            border:1px solid rgba(255,255,255,.1);
-            color:var(--muted);
+        .project-tags span {
+            font-size: .8rem;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .1);
+            color: var(--muted);
         }
 
         /* RESPONSIVO */
-        @media(max-width:900px){
+        @media(max-width:900px) {
 
-            .projects-grid{
-                grid-template-columns:1fr;
+            .projects-grid {
+                grid-template-columns: 1fr;
             }
 
         }
@@ -728,7 +821,7 @@
                     </li>
 
                     <li>
-                        <a href="#education">Formação</a>
+                        <a href="#education">Certificação</a>
                     </li>
 
                     <li>
@@ -882,46 +975,89 @@
 
     </section>
 
-    <section id="education">
+    </section id="education">
+
+        <h2 class="section-title">
+            Formação <span class="gradient">Acadêmica</span>
+        </h2>
+
+        <div class="education-card glass">
+            <div class="education-icon">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+
+            <div class="education-content">
+                <h3>Marketing Digital - Tecnólogo</h3>
+                <span class="education-school"> Anhanguera Educacional </span>
+                <p> Curso superior voltado para estratégias de marketing digital, redes sociais, branding, comportamento do
+                    consumidor, comunicação, análise de métricas e gestão de campanhas. </p>
+                <div class="education-info">
+                    <div> <strong>Status</strong> <span>Cursando</span> </div>
+                    <div> <strong>Previsão de Conclusão</strong> <span>2028</span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </section>
+
+    <section id="courses">
 
         <div class="container">
 
             <h2 class="section-title">
-                Formação <span class="gradient">Acadêmica</span>
+                Certificações <span class="gradient">Profissionais</span>
             </h2>
 
-            <div class="education-card glass">
+            <div class="cert-container">
 
-                <div class="education-icon">
-                    <i class="fa-solid fa-graduation-cap"></i>
+                <!-- LISTA -->
+                <div class="cert-list glass">
+
+                    <button class="cert-item active" onclick="showCert(0)">
+                        Excel na Prática
+                        <span>Fundação Bradesco</span>
+                    </button>
+
+                    <button class="cert-item" onclick="showCert(1)">
+                        Formação Básica
+                        <span>Sodiprom</span>
+                    </button>
+
+                    <button class="cert-item" onclick="showCert(2)">
+                        Rotinas Administrativas
+                        <span>Florestan Fernandes</span>
+                    </button>
+
+                    <button class="cert-item" onclick="showCert(3)">
+                        Produtividade Inteligente
+                        <span>Escola Conquer</span>
+                    </button>
+
+                    <button class="cert-item" onclick="showCert(4)">
+                        Excel Profissional
+                        <span>Aula EAD</span>
+                    </button>
+
                 </div>
 
-                <div class="education-content">
+                <!-- DETALHE -->
+                <div class="cert-detail glass" id="certDetail">
 
-                    <h3>Marketing Digital - Tecnólogo</h3>
+                    <h3>Excel na Prática</h3>
+                    <p class="cert-org">Fundação Bradesco</p>
+                    <p class="cert-date">Conclusão: Setembro de 2025</p>
 
-                    <span class="education-school">
-                        Anhanguera Educacional
-                    </span>
-
-                    <p>
-                        Curso superior voltado para estratégias de marketing digital,
-                        redes sociais, branding, comportamento do consumidor,
-                        comunicação, análise de métricas e gestão de campanhas.
+                    <p class="cert-desc">
+                        Curso voltado ao desenvolvimento de habilidades em organização e análise de dados, com foco no uso prático do Microsoft Excel para otimizar rotinas administrativas, cálculos e tomada de decisão no ambiente profissional. Aborda a construção e estruturação de planilhas, aplicação de fórmulas essenciais e boas práticas de organização de informações.
                     </p>
 
-                    <div class="education-info">
-
-                        <div>
-                            <strong>Status</strong>
-                            <span>Cursando</span>
-                        </div>
-
-                        <div>
-                            <strong>Previsão de Conclusão</strong>
-                            <span>2028</span>
-                        </div>
-
+                    <div class="cert-tags">
+                        <span>Excel</span>
+                        <span>Organização</span>
+                        <span>Cálculo</span>
                     </div>
 
                 </div>
@@ -1184,6 +1320,65 @@
     <footer>
         © 2026 Ana Carolina Gonçalves Lopes • Marketing Digital
     </footer>
+
+    <script>
+    const certs = [
+        {
+            title: "Excel na Prática",
+            org: "Fundação Bradesco",
+            date: "Conclusão: Setembro de 2025",
+            desc: "Curso voltado ao desenvolvimento de habilidades em organização e análise de dados, com foco no uso prático do Microsoft Excel para otimizar rotinas administrativas, cálculos e tomada de decisão no ambiente profissional. Aborda a construção e estruturação de planilhas, aplicação de fórmulas essenciais e boas práticas de organização de informações.",
+            tags: ["Excel", "Organização", "Cálculo"]
+        },
+        {
+            title: "Formação Básica para o Mundo do Trabalho",
+            org: "Sodiprom",
+            date: "Conclusão: Julho de 2019",
+            desc: "Formação voltada ao desenvolvimento de competências essenciais para o ambiente de trabalho, com foco em comunicação eficaz, organização pessoal e profissional. Aborda práticas de convivência e postura no ambiente corporativo, estimulando responsabilidade e proatividade.",
+            tags: ["Comunicação", "Organização"]
+        },
+        {
+            title: "Rotinas Administrativas",
+            org: "Fundação Florestan Fernandes",
+            date: "Conclusão: Dezembro de 2023",
+            desc: "Formação voltada para o desenvolvimento de habilidades em processos administrativos, atendimento ao público e suporte operacional. Aborda práticas essenciais de organização de rotinas administrativas e fluxo de informações. Desenvolve competências em comunicação, trabalho em equipe e resolução de demandas do dia a dia.",
+            tags: ["Administração", "Comunicação"]
+        },
+        {
+            title: "Produtividade Inteligente",
+            org: "Escola Conquer",
+            date: "Conclusão: Fevereiro de 2023",
+            desc: "Curso voltado ao desenvolvimento de produtividade pessoal e profissional, com foco em melhoria de desempenho e gestão do tempo. Apresenta técnicas para organização de tarefas, definição de prioridades e aumento da eficiência no dia a dia. Trabalha estratégias para manter o foco e reduzir distrações em ambientes de estudo e trabalho.",
+            tags: ["Produtividade", "Foco"]
+        },
+        {
+            title: "Excel Profissional",
+            org: "Aula EAD",
+            date: "Conclusão: Junho de 2019",
+            desc: "Curso voltado ao aprimoramento do uso profissional do Microsoft Excel, com foco na criação e gestão de planilhas. Aborda a construção de estruturas organizadas para controle de dados e informações. Desenvolve habilidades na aplicação de fórmulas e funções essenciais para análise de dados. Trabalha boas práticas de formatação e padronização de planilhas.",
+            tags: ["Excel", "Planilhas"]
+        }
+    ];
+
+    function showCert(index){
+        const c = certs[index];
+        const box = document.getElementById("certDetail");
+
+        box.innerHTML = `
+            <h3>${c.title}</h3>
+            <p class="cert-org">${c.org}</p>
+            <p class="cert-date">${c.date}</p>
+            <p class="cert-desc">${c.desc}</p>
+            <div class="cert-tags">
+                ${c.tags.map(t => `<span>${t}</span>`).join("")}
+            </div>
+        `;
+
+        document.querySelectorAll(".cert-item").forEach((el,i)=>{
+            el.classList.toggle("active", i === index);
+        });
+    }
+</script>
 
 </body>
 
