@@ -84,6 +84,7 @@
 
         .logo span {
             background: var(--gradient);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -123,6 +124,7 @@
 
         .gradient {
             background: var(--gradient);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -364,10 +366,11 @@
             font-size:1.8rem;
 
             margin-bottom:18px;
-
+            
             background:var(--gradient);
-            -webkit-background-clip:text;
-            -webkit-text-fill-color:transparent;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .about-card h3{
@@ -433,7 +436,8 @@
             font-size:2.2rem;
 
             background:var(--gradient);
-            -webkit-background-clip:text;
+            background-clip: text;
+            -webkit-background-clip: text;
             -webkit-text-fill-color:transparent;
         }
 
@@ -483,6 +487,83 @@
                 justify-content:center;
                 flex-wrap:wrap;
                 gap:25px;
+            }
+
+        }
+
+        /* =========================
+        PROJETOS
+        ========================= */
+
+        .projects-grid{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:25px;
+            margin-top:40px;
+        }
+
+        .project-card{
+            border-radius:24px;
+            overflow:hidden;
+            display:flex;
+            flex-direction:column;
+            text-decoration:none;
+            color:inherit;
+            transition:.3s ease;
+        }
+
+        .project-card:hover{
+            transform:translateY(-8px);
+            border-color:rgba(138,92,255,.35);
+        }
+
+        .project-card img{
+            width:100%;
+            height:200px;
+            object-fit:cover;
+            display:block;
+            transition:.4s ease;
+        }
+
+        .project-card:hover img{
+            transform:scale(1.05);
+        }
+
+        .project-content{
+            padding:25px;
+        }
+
+        .project-content h3{
+            margin-bottom:10px;
+            font-size:1.3rem;
+        }
+
+        .project-content p{
+            color:var(--muted);
+            line-height:1.7;
+            margin-bottom:15px;
+        }
+
+        .project-tags{
+            display:flex;
+            flex-wrap:wrap;
+            gap:10px;
+        }
+
+        .project-tags span{
+            font-size:.8rem;
+            padding:6px 12px;
+            border-radius:999px;
+            background:rgba(255,255,255,.06);
+            border:1px solid rgba(255,255,255,.1);
+            color:var(--muted);
+        }
+
+        /* RESPONSIVO */
+        @media(max-width:900px){
+
+            .projects-grid{
+                grid-template-columns:1fr;
             }
 
         }
@@ -647,7 +728,15 @@
                     </li>
 
                     <li>
+                        <a href="#education">Formação</a>
+                    </li>
+
+                    <li>
                         <a href="#experience">Experiência</a>
+                    </li>
+
+                    <li>
+                        <a href="#projects">Projetos</a>
                     </li>
 
                     <li>
@@ -850,7 +939,7 @@
 
     </section>
 
-    <section>
+    <section id="experience">
 
         <div class="container">
 
@@ -928,7 +1017,85 @@
 
     </section>
 
-    <section>
+    <section id="projects">
+
+        <div class="container">
+
+            <h2 class="section-title">
+                Meus <span class="gradient">Projetos</span>
+            </h2>
+
+            <p class="contact-description">
+                Alguns trabalhos e projetos desenvolvidos na área de Marketing Digital,
+                Social Media e criação de conteúdo para redes sociais.
+            </p>
+
+            <div class="projects-grid">
+
+                <a href="uploads/projetos/projeto1.html" class="project-card glass">
+
+                    <img src="uploads/projetos/img/projeto1.jpg" alt="Gestão de Instagram">
+
+                    <div class="project-content">
+                        <h3>Gestão de Instagram</h3>
+                        <p>
+                            Planejamento de conteúdo, criação de postagens e estratégias para aumento de engajamento.
+                        </p>
+
+                        <div class="project-tags">
+                            <span>Social Media</span>
+                            <span>Canva</span>
+                            <span>Estratégia</span>
+                        </div>
+                    </div>
+
+                </a>
+
+                <a href="uploads/projetos/projeto2.html" class="project-card glass">
+
+                    <img src="uploads/projetos/img/projeto2.jpg" alt="Campanha Digital">
+
+                    <div class="project-content">
+                        <h3>Campanha Digital</h3>
+                        <p>
+                            Desenvolvimento de campanha promocional com foco em vendas e visibilidade de marca.
+                        </p>
+
+                        <div class="project-tags">
+                            <span>Marketing</span>
+                            <span>Vendas</span>
+                            <span>Conteúdo</span>
+                        </div>
+                    </div>
+
+                </a>
+
+                <a href="uploads/projetos/projeto3.html" class="project-card glass">
+
+                    <img src="uploads/projetos/img/projeto3.jpg" alt="Design para Redes Sociais">
+
+                    <div class="project-content">
+                        <h3>Design para Redes Sociais</h3>
+                        <p>
+                            Criação de artes visuais e identidade para posts no Instagram e outras redes.
+                        </p>
+
+                        <div class="project-tags">
+                            <span>Design</span>
+                            <span>Canva</span>
+                            <span>Branding</span>
+                        </div>
+                    </div>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="skills">
 
         <div class="container">
 
