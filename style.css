@@ -13,6 +13,11 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
         html {
             scroll-behavior: smooth;
         }
@@ -50,16 +55,15 @@
 
         .nav {
             height: 80px;
-
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
         }
 
         .logo {
             text-decoration: none;
             color: white;
-
+            justify-self: center;
             font-size: 1.3rem;
             font-weight: 700;
         }
@@ -566,6 +570,17 @@
 
         }
 
+        @media (max-width: 900px) {
+            .nav {
+                justify-content: center;
+            }
+
+            .logo {
+                justify-self: center;
+                text-align: center;
+            }
+        }
+
         /* =========================
         PROJETOS
         ========================= */
@@ -781,3 +796,236 @@
             }
 
         }
+
+/* =========================
+BOTTOM NAV MOBILE
+========================= */
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+
+    background: rgba(7, 11, 22, 0.75);
+    backdrop-filter: blur(20px);
+
+    border-top: 1px solid rgba(255,255,255,0.08);
+    z-index: 2000;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.7rem;
+
+    transition: .2s;
+}
+
+.nav-item i {
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+}
+
+.nav-item:hover,
+.nav-item:focus {
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* ativa apenas mobile */
+@media (max-width: 900px) {
+
+    .bottom-nav {
+        display: flex;
+    }
+
+    /* evita conteúdo ficar escondido atrás do menu */
+    body {
+        padding-bottom: 80px;
+    }
+
+    /* opcional: esconder menu desktop */
+    .nav-links {
+        display: none;
+    }
+}
+
+@media (max-width: 900px) {
+
+    /* =========================
+       RESET MOBILE GERAL
+    ========================= */
+
+    section {
+        padding: 70px 0;
+    }
+
+    h2.section-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+
+    /* evita qualquer overflow */
+    * {
+        max-width: 100%;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 2.3rem;
+    }
+
+    .buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .buttons {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    }
+
+    .buttons .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* =========================
+       ABOUT
+    ========================= */
+
+    @media (max-width: 900px) {
+
+        #about .about-text {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+    }
+
+    .about-highlights {
+        grid-template-columns: 1fr;
+    }
+
+    /* =========================
+       EDUCATION
+    ========================= */
+
+    .education-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .education-info {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+
+        #education .education-card {
+            flex-direction: column;
+            text-align: center;
+            padding: 25px;
+            gap: 20px;
+        }
+
+        #education .education-icon {
+            margin: 0 auto;
+        }
+
+        #education .education-content p {
+            text-align: center;
+        }
+
+        #education .education-info {
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        #education .education-info div {
+            min-width: 140px;
+        }
+    }
+
+    @media (max-width: 900px) {
+
+        #education .education-card {
+            margin: 0 15px;
+            width: auto;
+            border-radius: 24px;
+        }
+
+    }
+
+    /* =========================
+       CERTS
+    ========================= */
+
+    .cert-container {
+        grid-template-columns: 1fr;
+    }
+
+    .cert-list {
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 10px;
+        padding-bottom: 10px;
+    }
+
+    .cert-item {
+        min-width: 180px;
+        flex-shrink: 0;
+    }
+
+    /* =========================
+       PROJECTS
+    ========================= */
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* =========================
+       SKILLS
+    ========================= */
+
+    .skills {
+        grid-template-columns: 1fr;
+    }
+
+    /* =========================
+       NAV LINKS (desktop OFF)
+    ========================= */
+
+    .nav-links {
+        display: none;
+    }
+
+    
+}
