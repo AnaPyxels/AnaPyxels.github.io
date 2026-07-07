@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projeto</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #070B16;
+    --text: #fff;
+    --muted: #b9c1d9;
+    --border: rgba(255,255,255,.1);
+    --card: rgba(255,255,255,.05);
+    --gradient: linear-gradient(135deg, #4D8DFF, #8A5CFF);
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.container {
+    width: min(1000px, 92%);
+    margin: auto;
+}
+
+/* HERO */
+.hero {
+    padding: 90px 0 20px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+}
+
+.gradient {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    color: var(--muted);
+    max-width: 700px;
+    margin: auto;
+    line-height: 1.8;
+}
+
+/* =========================
+   CARROSSEL
+========================= */
+
+.carousel {
+    position: relative;
+    margin-top: 40px;
+}
+
+.viewport {
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+}
+
+.track {
+    display: flex;
+    transition: transform .5s ease;
+}
+
+/* SLIDE */
+.slide {
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background: var(--card);
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+/* imagem */
+.slide img {
+    width: 55%;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    object-fit: cover;
+}
+
+/* texto */
+.caption {
+    width: 45%;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+/* título */
+.caption h3 {
+    margin: 0 0 10px 0;
+    color: var(--text);
+    font-size: 1.3rem;
+}
+
+/* setas */
+.nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,.4);
+    border: 1px solid var(--border);
+    color: white;
+    font-size: 2rem;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* INFO */
+.info {
+    margin-top: 40px;
+    padding: 25px;
+    border-radius: 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+.back {
+    display: inline-block;
+    margin-top: 30px;
+    text-decoration: none;
+    color: var(--text);
+    padding: 12px 20px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: rgba(255,255,255,.03);
+    transition: .2s;
+}
+
+.back:hover {
+    background: rgba(255,255,255,.08);
+    transform: translateY(-2px);
+}
+
+/* RESPONSIVO */
+@media(max-width: 768px){
+    .slide {
+        flex-direction: column;
+    }
+
+    .slide img,
+    .caption {
+        width: 100%;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- HERO -->
+<div class="hero">
+    <h1>Titulo <span class="gradient">*</span></h1>
+    <p>Subtitulo do Projeto.</p>
+</div>
+
+<!-- CARROSSEL -->
+<div class="carousel">
+
+    <button class="nav prev" onclick="move(-1)">‹</button>
+    <button class="nav next" onclick="move(1)">›</button>
+
+    <div class="viewport">
+        <div class="track" id="track">
+
+            <div class="slide">
+                <img src="img/galeria/projeto1/img1.jpg">
+                <div class="caption">
+                    <h3>titulo card</h3>
+                    <p>
+                        texto do card
+                    </p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="img/galeria/projeto1/img2.jpg">
+                <div class="caption">
+                    <h3>titulo card</h3>
+                    <p>
+                        texto do card
+                    </p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="img/galeria/projeto1/img3.jpg">
+                <div class="caption">
+                    <h3>titulo card</h3>
+                    <p>
+                        texto do card
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- INFO -->
+<div class="info">
+    "Detalhes do Projeto"
+</div>
+
+<a href="../../index.html" class="back">← Voltar</a>
+
+</div>
+
+<script>
+
+let index = 0;
+
+function move(direction){
+    const track = document.getElementById('track');
+    const slides = document.querySelectorAll('.slide');
+
+    index += direction;
+
+    if(index < 0){
+        index = slides.length - 1;
+    }
+
+    if(index >= slides.length){
+        index = 0;
+    }
+
+    track.style.transform = `translateX(-${index * 100}%)`;
+}
+
+</script>
+
+</body>
+</html>
